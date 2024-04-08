@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <title>Fish</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <div class="nav-item">登录</div>
+        <div class="nav-item">视频跟踪</div>
+        <div class="nav-item">监控跟踪</div>
+        <div class="nav-item">帮助</div>
+      </div>
+      <div class="content">
+        <div class="content-top">
+          <text>Fish</text>
+          <img src="static/user.png" alt="fish" />
+        </div>
+        <div class="content-bottom" id="content">
+          <form
+            action="/upload"
+            method="post"
+            enctype="multipart/form-data"
+            class="upload-form"
+          >
+            <label for="fileinp">
+              <input type="button" id="btn" value="选择图片" />
+              <input type="file" id="fileinp" name="file" required />
+            </label>
+            <br /><br />
+            <input type="submit" value="点击上传" class="btn" />
+          </form>
+          {% if not result %}
+          <div id="text">请上传图片/视频</div>
+          {% endif %} {% if result %} {% if not video %}
+          <img id="uploadedImage" src="static/view.jpg" alt="Uploaded Image" />
+          {% else %}
+          <video
+            id="uploadedImage"
+            src="static/viewh264.mp4"
+            alt="Uploaded Image"
+            controls="controls"
+          ></video>
+          {% endif %} {% endif %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<style>
+  body,
+  html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  .container {
+    display: flex;
+    height: 100%;
+  }
+
+  .sidebar {
+    width: 10%;
+    background-color: #f0f0f0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-item {
+    width: 100%;
+    /* height: 10%; */
+    padding: 35px 0;
+    align-items: center;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .content {
+    width: 90%;
+    height: 100%;
+  }
+
+  .content-top {
+    height: 10%;
+    width: 100%;
+    background-color: #e9e9e9;
+    display: flex;
+  }
+
+  .content-top text {
+    padding-left: 50px;
+    align-self: center;
+    font-size: 30px;
+  }
+
+  .content-top img {
+    height: 50px;
+    width: 50px;
+    align-self: center;
+    margin-left: auto;
+    margin-right: 80px;
+    border-radius: 50%;
+  }
+
+  .content-bottom {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .upload-form {
+    display: flex;
+    justify-content: center; /* 居中显示 */
+    align-items: center; /* 垂直居中 */
+  }
+
+  #uploadedImage {
+    margin-top: 50px;
+    max-width: 40%;
+    height: auto;
+  }
+
+  label {
+    position: relative;
+  }
+
+  #fileinp {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 150px;
+    height: 80px;
+    padding: 5px 10px;
+    margin: 20px;
+  }
+
+  #btn {
+    width: 150px;
+    height: 80px;
+    padding: 5px 10px;
+    background: #00b0f0;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 30px;
+    margin: 20px;
+  }
+
+  .btn {
+    width: 150px;
+    height: 80px;
+    padding: 5px 10px;
+    background: #00b0f0;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 30px;
+    margin: 20px;
+  }
+
+  #text {
+    color: red;
+  }
+</style>
+
+<script>
+  $("#content").change(function () {
+    $("#text").html($("#fileinp").val());
+  });
+</script>

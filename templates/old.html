@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Fish</title>
+    <link rel="stylesheet" href="static/styles.css" />
+    <link rel="stylesheet" href="static/index.css" />
+  </head>
+  <body class="main-page" style="height: 100vh">
+    <div class="container">
+      <h1>Fish</h1>
+      <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" />
+        <br /><br />
+        <input type="submit" value="Upload" class="btn btn-primary" />
+      </form>
+      {% if result %}
+      <div id="imageDiv" style="margin-top: 10px">
+        <img
+          id="uploadedImage"
+          src="static/view.jpg"
+          alt="Uploaded Image"
+          style="max-width: 40%; height: auto"
+        />
+        <br />
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
